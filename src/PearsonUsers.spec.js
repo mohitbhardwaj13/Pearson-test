@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { PearsonUsers } from "./PearsonUsers";
 jest.mock('./request');
 
@@ -7,7 +7,7 @@ describe("PearsonUsers", () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<PearsonUsers />);
+    component = mount(<PearsonUsers />);
   });
 
   it("renders a h1", () => {
