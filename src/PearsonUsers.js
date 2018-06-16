@@ -36,9 +36,9 @@ export class PearsonUsers extends Component {
       <div className="pearon-users">
         <h1>Pearson User Management</h1>
         <ul id="users-listing">
-          {this.state.users.map( user => {
+          {this.state.users.map( (user, index) => {
             return (
-              <li>
+              <li key={index}>
                 <img src={user.avatar} alt={user.first_name + ' ' + user.last_name} width="80" height="80" />
                 <label>{user.first_name + ' ' + user.last_name}</label>
               </li>
