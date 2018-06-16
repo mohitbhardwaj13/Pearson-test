@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import request from './request';
+import PearsonUser from './PearsonUser';
 
 export class PearsonUsers extends Component {
   constructor(props) {
@@ -30,6 +31,8 @@ export class PearsonUsers extends Component {
         }
       ]
     };
+
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentDidMount(){
@@ -63,11 +66,7 @@ export class PearsonUsers extends Component {
         <ul id="users-listing">
           {this.state.users.map( (user, index) => {
             return (
-              <li key={user.id} data-id={user.id}>
-                <img src={user.avatar} alt={user.first_name + ' ' + user.last_name} width="80" height="80" />
-                <label>{user.first_name + ' ' + user.last_name}</label>
-                <span className="delete-buttons" onClick={ () => this.deleteUser(user.id) }>Delete</span>
-              </li>
+              <PearsonUser key={user.id} user={user} onDelete={this.deleteUser} />
             );
           })}
         </ul>
