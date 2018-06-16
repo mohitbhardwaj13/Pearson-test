@@ -37,4 +37,18 @@ describe("PearsonUsers", () => {
     const numLabels = component.find("#users-listing li label").length;
     expect( numLabels ).toEqual( numStateUsers );
   });
+
+  it("does not render duplicate users", () => {
+    const users = component.update().state().users;
+    const uniqueIds = [];
+    users.forEach( (user) => {
+      const curId = user.id;
+      if( ! uniqueIds.includes( curId ) ){
+        uniqueIds.push( curId );
+      }
+    });//forEach()
+
+    // number of uniqueIds should be equal to total no. of users in state
+    expect( uniqueIds.length ).toEqual( users.length );
+  });
 });
