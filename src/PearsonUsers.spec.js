@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { PearsonUsers } from "./PearsonUsers";
+jest.mock('./request');
 
 describe("PearsonUsers", () => {
   let component;
@@ -20,19 +21,19 @@ describe("PearsonUsers", () => {
   });
 
   it("renders each user in state", () => {
-    const renderedUsers = component.find("#users-listing li");
+    const renderedUsers = component.update().find("#users-listing li");
     const stateUsers = component.state().users;
     expect( renderedUsers.length ).toEqual( stateUsers.length );
   });
 
   it("renders img for each user", () => {
-    const numStateUsers = component.state().users.length;
+    const numStateUsers = component.update().state().users.length;
     const numImg = component.find("#users-listing li img").length;
     expect( numImg ).toEqual( numStateUsers );
   });
 
   it("renders label for each user", () => {
-    const numStateUsers = component.state().users.length;
+    const numStateUsers = component.update().state().users.length;
     const numLabels = component.find("#users-listing li label").length;
     expect( numLabels ).toEqual( numStateUsers );
   });

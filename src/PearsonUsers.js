@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import request from './request';
 
 export class PearsonUsers extends Component {
   constructor(props) {
@@ -26,13 +27,6 @@ export class PearsonUsers extends Component {
           last_name: "Ramos",
           avatar:
             "https://s3.amazonaws.com/uifaces/faces/twitter/bigmancho/128.jpg"
-        },
-        {
-          id: 6,
-          first_name: "Tracey",
-          last_name: "Ramos",
-          avatar:
-            "https://s3.amazonaws.com/uifaces/faces/twitter/bigmancho/128.jpg"
         }
       ]
     };
@@ -40,9 +34,14 @@ export class PearsonUsers extends Component {
 
   componentDidMount(){
     // fetch users from the api endpoint for showing in the listing
-    fetch('https://reqres.in/api/users?page=1&per_page=10')
-    .then( response => response.json() )
-    .then( data => {
+    request('https://reqres.in/api/users?page=1&per_page=10')
+    .then( response => {
+      let data = {'data': []};
+      try{
+        data = JSON.parse(response);
+      }catch(e){
+        console.error(e);
+      }
       const curUsersList = this.state.users;
       // append received users to the existing users' list
       const updatedUsersList = [...curUsersList, ...data.data];
