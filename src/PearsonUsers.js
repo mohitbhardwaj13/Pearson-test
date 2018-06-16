@@ -31,6 +31,24 @@ export class PearsonUsers extends Component {
     };
   }
 
+  componentDidMount(){
+    // fetch users from the api endpoint for showing in the listing
+    fetch('https://reqres.in/api/users?page=1&per_page=10').
+    then( response => response.json() ).
+    then( data => {
+      const curUsersList = this.state.users;
+      // append received users to the existing users' list
+      const updatedUsersList = [...curUsersList, ...data.data];
+
+      // update users' list in the state
+      this.setState({
+        users: updatedUsersList
+      });
+    }).catch( err => {
+      console.error( err );
+    });
+  }//componentDidMount()
+
   render() {
     return (
       <div className="pearon-users">
