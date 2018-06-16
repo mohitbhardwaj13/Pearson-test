@@ -66,7 +66,7 @@ export class PearsonUsers extends Component {
               <li key={user.id}>
                 <img src={user.avatar} alt={user.first_name + ' ' + user.last_name} width="80" height="80" />
                 <label>{user.first_name + ' ' + user.last_name}</label>
-                <p>{user.id}</p>
+                <span className="delete-buttons" onClick={ () => this.deleteUser(user.id) }>Delete</span>
               </li>
             );
           })}
@@ -92,4 +92,14 @@ export class PearsonUsers extends Component {
     });//forEach()
     return uniqueUsersList;
   }//removeDuplicates()
+
+
+  deleteUser( id ){
+    const updatedUsersList = this.state.users.filter( user => {
+      return user.id !== id;
+    });//
+    this.setState({
+      users: updatedUsersList
+    });
+  }//deleteUser();
 }

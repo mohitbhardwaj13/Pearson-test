@@ -39,4 +39,12 @@ h1{
   font-size: 18px;
   padding: 20px;
 }
+
+#users-listing .delete-buttons{
+  color: #007fa3;
+  cursor: pointer;
+  float: left;
+  font-size: 14px;
+  padding: 10px;
+}
 /* users listing styles end here */
