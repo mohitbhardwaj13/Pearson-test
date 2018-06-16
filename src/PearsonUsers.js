@@ -63,7 +63,7 @@ export class PearsonUsers extends Component {
         <ul id="users-listing">
           {this.state.users.map( (user, index) => {
             return (
-              <li key={user.id}>
+              <li key={user.id} data-id={user.id}>
                 <img src={user.avatar} alt={user.first_name + ' ' + user.last_name} width="80" height="80" />
                 <label>{user.first_name + ' ' + user.last_name}</label>
                 <span className="delete-buttons" onClick={ () => this.deleteUser(user.id) }>Delete</span>
